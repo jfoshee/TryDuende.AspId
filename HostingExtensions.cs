@@ -48,6 +48,13 @@ internal static class HostingExtensions
                 options.ClientSecret = "copy client secret from Google here";
             });
 
+        builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+        {
+            policy.AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowAnyOrigin();
+        }));
+
         return builder.Build();
     }
     
@@ -62,6 +69,9 @@ internal static class HostingExtensions
 
         app.UseStaticFiles();
         app.UseRouting();
+        // Use CORS before Auth and after Routing
+        // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0#middleware-order
+        app.UseCors();
         app.UseIdentityServer();
         app.UseAuthorization();
         

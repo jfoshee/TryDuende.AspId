@@ -48,5 +48,19 @@ public static class Config
                 AllowOfflineAccess = true,
                 AllowedScopes = { "openid", "profile", "scope2" }
             },
+            new Client
+            {
+                ClientId = "client",
+
+                AllowedGrantTypes = GrantTypes.Implicit,
+
+                // scopes that client has access to
+                AllowedScopes = { "openid", "profile" },
+
+                RedirectUris = new[]
+                {
+                    "https://localhost:7178/authentication/login-callback"
+                }
+            }
         };
 }
