@@ -20,13 +20,15 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
-                    
+
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-page="/Account/Logout/Index">Logout</a>
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+                            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                        </form>
                     </div>
-              </li>
+                </li>
             </ul>
         }
-    
+
     </nav>
 </div>
